@@ -1,10 +1,12 @@
 name: month-run
 
-on: push
+on: 
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   build:
-    name: build_when_day_past
+    name: build_when_month
     runs-on: ubuntu-latest
     env:
       REGISTRY: "registry.cn-hongkong.aliyuncs.com"
