@@ -1,4 +1,4 @@
-name: month-run
+name: build
 
 on: 
   push:
