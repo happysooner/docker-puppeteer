@@ -1,0 +1,30 @@
+name: month-run
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  build:
+    name: build_when_day_past
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: "registry.cn-hongkong.aliyuncs.com"
+      TAG: "happysooner/docker-puppeteer:latest"
+    steps:
+      - name: "复制文件"
+        uses: actions/checkout@v1
+      - name: "列出文件"
+        run: ls
+      - name: "容器构建"
+        run: |
+          docker login --username=${{ secrets.ALIYUN_DOCKER_NAME }} $REGISTRY --password=${{ secrets.ALIYUN_DOCKER_PASS }}
+          docker build -t build:latest . 
+          docker tag build:latest $REGISTRY/$TAG
+          docker push $REGISTRY/$TAG
+      - name: "构建失败 - 通知远浅排查问题"
+        if: failure()
+        run: curl -H "Content-Type:application/json" -X POST ${{ secrets.SEND_MAIL_API }} -d '{"text":"${{ github.repository }} 构建失败", "desp":"构建失败啦! https://github.com/${{ github.repository }}/actions","to":"${{ secrets.EMAIL }}"}'
+      - name: "构建成功 - 通知远浅让他开心"
+        if: success()
+        run: curl -H "Content-Type:application/json" -X POST ${{ secrets.SEND_MAIL_API }} -d '{"text":"${{ github.repository }} 构建成功~!", "desp":"服务更新~ https://github.com/${{ github.repository }}/actions","to":"${{ secrets.EMAIL }}"}'
