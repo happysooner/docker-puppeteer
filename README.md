@@ -1,7 +1,8 @@
-# docker-puppeteer
+# docker-puppeteer![build](https://github.com/happysooner/docker-puppeteer/workflows/month-run/badge.svg)
 a node:lts docker image with fonts
 
-## TODO
-编写Actions定期构建
 
 ## How To Use
+```dockerfile
+from registry.cn-hongkong.aliyuncs.com/happysooner/docker-puppeteer
+```
