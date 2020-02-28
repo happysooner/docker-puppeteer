@@ -1,4 +1,4 @@
-# docker-puppeteer![build](https://github.com/happysooner/docker-puppeteer/workflows/month-run/badge.svg)
+# docker-puppeteer ![build](https://github.com/happysooner/docker-puppeteer/workflows/build/badge.svg)
 a node:lts docker image with fonts
 
 
