@@ -1,6 +1,7 @@
 name: month-run
 
 on: 
+  push:
   schedule:
     - cron: "0 0 1 * *"
 
