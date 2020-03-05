@@ -10,7 +10,7 @@ jobs:
     name: build_when_month
     runs-on: ubuntu-latest
     env:
-      REGISTRY: "registry.cn-hongkong.aliyuncs.com"
+      REGISTRY: "registry.cn-shenzhen.aliyuncs.com"
       TAG: "happysooner/docker-puppeteer:latest"
     steps:
       - name: "复制文件"
